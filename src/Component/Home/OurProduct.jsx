@@ -1,0 +1,242 @@
+import { useEffect, useRef, useState } from "react";
+import Slider from "react-slick";
+import Container from "../Common/Container";
+import SecHead from "./SecHead";
+import Card from ".././Common/Card";
+import img1 from "../../assets/Cart4.png";
+import camera from "../../assets/camera.png";
+import laptop from "../../assets/laptop.png";
+import cart from "../../assets/Cart.png";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
+
+const SliderComponent = Slider?.default ?? Slider;
+
+function SampleNextArrow({ onClick }) {
+  return (
+    <button
+      className=" cursor-pointer  w-11.5 h-11.5 absolute -top-10 lg:-top-20 right-0 rounded-full  bg-[#F5F5F5] flex justify-center items-center "
+      onClick={onClick}
+    >
+      <FaArrowRightLong />
+    </button>
+  );
+}
+
+function SamplePrevArrow({ onClick }) {
+  return (
+    <button
+      className=" cursor-pointer  w-11.5 h-11.5 absolute -top-10 lg:-top-20 right-15  rounded-full bg-[#F5F5F5] flex justify-center items-center  "
+      onClick={onClick}
+    >
+      <FaArrowLeftLong />
+    </button>
+  );
+}
+
+const OurProduct = () => {
+  const sliderContainerRef = useRef(null);
+  const [sliderLayout, setSliderLayout] = useState({
+    slidesToShow: 1,
+    rows: 4,
+    slidesPerRow: 1,
+  });
+
+  useEffect(() => {
+    const sliderContainer = sliderContainerRef.current;
+
+    if (!sliderContainer) return undefined;
+
+    const updateSliderLayout = () => {
+      const width = sliderContainer.clientWidth;
+
+      setSliderLayout(
+        width < 570
+          ? { slidesToShow: 1, rows: 4, slidesPerRow: 1 }
+          : width < 740
+            ? { slidesToShow: 1, rows: 2, slidesPerRow: 2 }
+            : { slidesToShow: 2, rows: 2, slidesPerRow: 2 },
+      );
+    };
+
+    updateSliderLayout();
+
+    const resizeObserver = new ResizeObserver(updateSliderLayout);
+    resizeObserver.observe(sliderContainer);
+
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  const settings = {
+    //     className: "center  ",
+    //  centerMode: true,
+    infinite: true,
+    centerPadding: "0px",
+    slidesToShow: sliderLayout.slidesToShow,
+    speed: 500,
+    rows: sliderLayout.rows,
+    slidesPerRow: sliderLayout.slidesPerRow,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+
+  return (
+    <div className=" pt-17.5 pb-15 bg-white  ">
+      <Container>
+        <SecHead title="Our Products " heading="Explore Our Products" />
+        <div ref={sliderContainerRef} className=" mt-15 lg:mt-10">
+          <SliderComponent className="our-products-slider w-full" {...settings}>
+            <div className="my-2 ">
+              <Card
+                image={img1}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="100"
+                rating={3}
+                review="35"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={camera}
+                disCountCss="hidden"
+                title="CANON EOS DSLR Camera"
+                currentPrice="360"
+                rating={4}
+                review="95"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={laptop}
+                disCountCss="hidden"
+                title="ASUS FHD Gaming Laptop"
+                currentPrice="700"
+                rating={5}
+                review="325"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={cart}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="500"
+                rating={3.8}
+                review="145"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            {/* secend */}
+            <div className="my-2 ">
+              <Card
+                image={img1}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="100"
+                rating={3}
+                review="35"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={camera}
+                disCountCss="hidden"
+                title="CANON EOS DSLR Camera"
+                currentPrice="360"
+                rating={4}
+                review="95"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={laptop}
+                disCountCss="hidden"
+                title="ASUS FHD Gaming Laptop"
+                currentPrice="700"
+                rating={5}
+                review="325"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={cart}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="500"
+                rating={3.8}
+                review="145"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            {/* three  */}
+            <div className="my-2 ">
+              <Card
+                image={img1}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="100"
+                rating={3}
+                review="35"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={camera}
+                disCountCss="hidden"
+                title="CANON EOS DSLR Camera"
+                currentPrice="360"
+                rating={4}
+                review="95"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={laptop}
+                disCountCss="hidden"
+                title="ASUS FHD Gaming Laptop"
+                currentPrice="700"
+                rating={5}
+                review="325"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+            <div className="my-2 ">
+              <Card
+                image={cart}
+                disCountCss="hidden"
+                title="Breed Dry Dog Food"
+                currentPrice="500"
+                rating={3.8}
+                review="145"
+                priceRatingCss=" flex gap-2 items-center space-y-0 "
+                regularPriceCss="hidden"
+              />
+            </div>
+          </SliderComponent>
+        </div>
+      </Container>
+    </div>
+  );
+};
+
+export default OurProduct;
